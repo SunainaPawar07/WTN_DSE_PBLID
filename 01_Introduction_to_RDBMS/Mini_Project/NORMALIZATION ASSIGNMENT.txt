@@ -1,0 +1,81 @@
+NORMALIZATION ASSIGNMENT
+1. Normalize the following table into 1 Normal Form (1NF)
+Given Table
+Member_Id	First_Name	Last_Name	Hobbies
+101	         Jayson          Mark	        Cricket, Swimming, Football
+102	          Ram	         Ganesh	        Swimming, Running, Music
+103	          Raj	         Kishore	Dancing, Singing, Running
+Answer
+Observation
+The Hobbies column contains multiple values in a single field. According to First Normal Form (1NF), each attribute should contain only one value.
+Solution
+Split the Hobbies column into separate rows so that each row contains only one hobby.
+1NF Table
+Member_Id	First_Name	Last_Name        Hobby
+101	         Jayson	          Mark	        Cricket
+101            	 Jayson	          Mark	        Swimming
+101	         Jayson	          Mark	        Football
+102	         Ram	         Ganesh	        Swimming
+102	         Ram	         Ganesh	        Running
+102	         Ram	         Ganesh	        Music
+103	         Raj	         Kishore	Dancing
+103	         Raj	         Kishore	Singing
+103	         Raj	         Kishore	Running
+Conclusion
+The table is now in First Normal Form because all attributes contain atomic values.
+
+2. Normalize the following table into 2nd Normal Form (2NF)
+Given Table
+Empno	Training	Training_Date	Dept
+101	Oracle SQL	12-Aug-2015	TT
+101	Java	        21-Aug-2015	BU
+102	Oracle SQL	18-Sep-2014	TT
+Answer
+Assumption
+The composite primary key is (Empno, Training).
+Observation
+The Dept attribute depends only on Empno and not on the complete primary key. This creates a partial dependency, which violates 2NF.
+Solution
+EMPLOYEE Table
+Empno	Dept
+101	TT
+102	TT
+TRAINING Table
+Empno	Training	Training_Date
+101	Oracle SQL	12-Aug-2015
+101	Java	        21-Aug-2015
+102	Oracle SQL	18-Sep-2014
+Conclusion
+The partial dependency has been removed and the table is converted into Second Normal Form (2NF).
+
+
+
+
+3. Normalize the following table into 3rd Normal Form (3NF)
+Given Table
+Member_Id	First_Name	Last_Name	Sports	Fees
+101	         Rajesh	         Chand	       Cricket	100
+102	         Jayesh	         Raj	        Hockey	80
+103	         Mark	         Dorson	       Football	90
+Answer
+Observation
+The Fees attribute depends on Sports rather than directly on Member_Id.
+Member_Id → Sports
+Sports → Fees
+Therefore,
+Member_Id → Sports → Fees
+This is a transitive dependency and violates 3NF.
+Solution
+MEMBER Table
+Member_Id	First_Name	Last_Name	Sports
+101	         Rajesh	         Chand	        Cricket
+102	         Jayesh	         Raj	        Hockey
+103	         Mark	         Dorson	        Football
+SPORTS Table
+Sports	Fees
+Cricket	100
+Hockey	80
+Football 90
+Conclusion
+The transitive dependency has been removed and the table is converted into Third Normal Form (3NF).
+
